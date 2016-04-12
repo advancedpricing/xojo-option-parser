@@ -88,11 +88,13 @@ Inherits TestGroup
 		  dim args() as string = Array("executable", "--test")
 		  
 		  parser.Parse(args)
-		  Assert.AreEqual(-1, parser.Extra.Ubound)
+		  dim ubCompare as Int32 = -1
+		  Assert.AreEqual(ubCompare, parser.Extra.Ubound)
 		  Assert.IsTrue(parser.BooleanValue("test"))
 		  
 		  parser.Parse args, false
-		  Assert.AreEqual(0, parser.Extra.Ubound)
+		  ubCompare = 0
+		  Assert.AreEqual(ubCompare, parser.Extra.Ubound)
 		  Assert.IsTrue(parser.BooleanValue("test"))
 		  Assert.AreEqual("executable", parser.Extra(0))
 		End Sub
@@ -446,6 +448,11 @@ Inherits TestGroup
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NotImplementedCount"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PassedTestCount"
