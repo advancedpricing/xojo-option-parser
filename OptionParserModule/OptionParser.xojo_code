@@ -1,5 +1,6 @@
 #tag Class
 Class OptionParser
+Implements UnitTestOptionParser
 	#tag Method, Flags = &h0
 		Sub AddOption(o As Option)
 		  // Add an option to the parser.
@@ -891,10 +892,9 @@ Class OptionParser
 		  // Concatenate a string to itself 'repeatCount' times.
 		  // Example: Repeat("spam ", 5) = "spam spam spam spam spam ".
 		  
-		  #pragma disablebackgroundTasks
-		  
 		  if repeatCount <= 0 then return ""
 		  if repeatCount = 1 then return s
+		  if s = "" then return s
 		  
 		  // Implementation note: normally, you don't want to use string concatenation
 		  // for something like this, since that creates a new string on each operation.
@@ -905,7 +905,7 @@ Class OptionParser
 		  
 		  Dim desiredLenB As Integer = LenB(s) * repeatCount
 		  dim output as String = s
-		  dim cutoff as Integer = (desiredLenB+1)\2
+		  dim cutoff as Integer = (desiredLenB + 1)\2
 		  dim curLenB as Integer = LenB(output)
 		  
 		  while curLenB < cutoff
