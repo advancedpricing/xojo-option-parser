@@ -147,6 +147,21 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub RepeatTest()
+		  dim o as OptionParserModule.UnitTestOptionParser = new OptionParser
+		  
+		  dim s as string = "a"
+		  Assert.AreEqual "aaa", o.Repeat(s, 3)
+		  
+		  s = ""
+		  Assert.AreEqual "", o.Repeat(s, 3)
+		  
+		  s = "aa"
+		  Assert.AreEqual "", o.Repeat(s, 0)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub SetToEmptyTest()
 		  Dim o As New OptionParser("app", "desc")
 		  o.AddOption new Option("", "set", "", Option.OptionType.String)
